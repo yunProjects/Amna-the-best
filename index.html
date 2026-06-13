@@ -1,305 +1,203 @@
-<!DOCTYPE html>
-
-<html lang="ms">
-
-<head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Amna Study Hub</title>
-
-<style>
-
-body{
-
-    font-family:Arial,sans-serif;
-
-    background:#e9ddf5;
-
-    text-align:center;
-
-    padding:20px;
-
-}
-
-.card{
-
-    background:white;
-
-    max-width:700px;
-
-    margin:auto;
-
-    padding:20px;
-
-    border-radius:20px;
-
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
-
-}
-
-h1{
-
-    color:#7b3fc5;
-
-}
-
-button{
-
-    background:#7b3fc5;
-
-    color:white;
-
-    border:none;
-
-    padding:10px 20px;
-
-    margin:5px;
-
-    border-radius:10px;
-
-    cursor:pointer;
-
-}
-
-button:hover{
-
-    opacity:0.9;
-
-}
-
-#result{
-
-    font-size:20px;
-
-    font-weight:bold;
-
-    margin-top:15px;
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div class="card">
-
-<h1>🌸 Amna Study Hub 🌸</h1>
-
-<p><b>Kata-kata Semangat:</b></p>
-
-<p>
-
-"Amna, setiap hari adalah peluang baru untuk menjadi lebih hebat.
-
-Jangan takut membuat kesilapan kerana itulah cara kita belajar."
-
-</p>
-
-<hr>
-
-<h2>Kuiz Tingkatan 1</h2>
-
-<p id="question"></p>
-
-<div id="answers"></div>
-
-<p id="result"></p>
-
-<button onclick="nextQuestion()">Soalan Seterusnya</button>
-
-</div>
-
-<script>
-
-const quiz = [
+const quizData = [
 
 {
 
-q:"Apakah ibu negara Malaysia?",
+question:"Apakah ibu negara Malaysia?",
 
-a:["Johor Bahru","Kuala Lumpur","Ipoh","Kuching"],
+options:["Johor Bahru","Kuala Lumpur","Ipoh","Kuching"],
 
-c:1
+answer:"Kuala Lumpur"
 
 },
 
 {
 
-q:"Berapakah 7 × 8?",
+question:"Berapakah 7 + 8?",
 
-a:["54","56","64","72"],
+options:["14","15","16","17"],
 
-c:1
-
-},
-
-{
-
-q:"Planet yang paling hampir dengan Matahari ialah?",
-
-a:["Bumi","Marikh","Utarid","Musytari"],
-
-c:2
+answer:"15"
 
 },
 
 {
 
-q:"Apakah simbol kimia bagi air?",
+question:"Planet yang kita diami ialah?",
 
-a:["CO2","H2O","NaCl","O2"],
+options:["Marikh","Bumi","Zuhrah","Musytari"],
 
-c:1
-
-},
-
-{
-
-q:"Siapakah Bapa Kemerdekaan Malaysia?",
-
-a:["Tun Razak","Tun Hussein Onn","Tunku Abdul Rahman","Tun Mahathir"],
-
-c:2
+answer:"Bumi"
 
 },
 
 {
 
-q:"Kata nama khas mesti ditulis dengan?",
+question:"Apakah simbol air?",
 
-a:["Huruf kecil","Huruf besar","Warna merah","Italic"],
+options:["CO2","O2","H2O","NaCl"],
 
-c:1
-
-},
-
-{
-
-q:"Negeri terbesar di Malaysia ialah?",
-
-a:["Sabah","Sarawak","Johor","Pahang"],
-
-c:1
+answer:"H2O"
 
 },
 
 {
 
-q:"Berapakah hasil 100 ÷ 4?",
+question:"Siapakah Perdana Menteri pertama Malaysia?",
 
-a:["20","24","25","30"],
+options:["Tunku Abdul Rahman","Tun Razak","Tun Hussein Onn","Tun Mahathir"],
 
-c:2
-
-},
-
-{
-
-q:"Apakah bahasa rasmi Malaysia?",
-
-a:["Inggeris","Mandarin","Bahasa Melayu","Tamil"],
-
-c:2
+answer:"Tunku Abdul Rahman"
 
 },
 
 {
 
-q:"Gunung tertinggi di Malaysia ialah?",
+question:"Berapakah 12 × 4?",
 
-a:["Gunung Tahan","Gunung Kinabalu","Gunung Ledang","Gunung Jerai"],
+options:["36","48","52","56"],
 
-c:1
+answer:"48"
+
+},
+
+{
+
+question:"Negeri Jelapang Padi Malaysia ialah?",
+
+options:["Johor","Perlis","Kedah","Sabah"],
+
+answer:"Kedah"
+
+},
+
+{
+
+question:"Haiwan yang boleh hidup di darat dan air?",
+
+options:["Ayam","Katak","Kucing","Arnab"],
+
+answer:"Katak"
+
+},
+
+{
+
+question:"Apakah bahasa kebangsaan Malaysia?",
+
+options:["Bahasa Inggeris","Bahasa Melayu","Bahasa Arab","Bahasa Tamil"],
+
+answer:"Bahasa Melayu"
+
+},
+
+{
+
+question:"Gunung tertinggi di Malaysia?",
+
+options:["Gunung Tahan","Gunung Kinabalu","Gunung Jerai","Gunung Ledang"],
+
+answer:"Gunung Kinabalu"
+
+},
+
+{
+
+question:"Berapakah 100 ÷ 4?",
+
+options:["20","25","30","40"],
+
+answer:"25"
+
+},
+
+{
+
+question:"Apakah benua terbesar di dunia?",
+
+options:["Afrika","Asia","Eropah","Australia"],
+
+answer:"Asia"
+
+},
+
+{
+
+question:"Apakah proses tumbuhan membuat makanan?",
+
+options:["Respirasi","Fotosintesis","Penyejatan","Pembakaran"],
+
+answer:"Fotosintesis"
+
+},
+
+{
+
+question:"Negara jiran Malaysia di selatan?",
+
+options:["Thailand","Indonesia","Singapura","Vietnam"],
+
+answer:"Singapura"
+
+},
+
+{
+
+question:"Berapakah hasil 15 + 25?",
+
+options:["30","35","40","45"],
+
+answer:"40"
+
+},
+
+{
+
+question:"Apakah warna yang terhasil daripada campuran merah dan kuning?",
+
+options:["Hijau","Ungu","Oren","Biru"],
+
+answer:"Oren"
+
+},
+
+{
+
+question:"Apakah sungai terpanjang di Malaysia?",
+
+options:["Sungai Rajang","Sungai Pahang","Sungai Perak","Sungai Kinabatangan"],
+
+answer:"Sungai Rajang"
+
+},
+
+{
+
+question:"Siapakah pencipta mentol lampu?",
+
+options:["Newton","Einstein","Thomas Edison","Galileo"],
+
+answer:"Thomas Edison"
+
+},
+
+{
+
+question:"Berapakah 9 × 9?",
+
+options:["72","81","90","99"],
+
+answer:"81"
+
+},
+
+{
+
+question:"Apakah lapisan paling luar bumi?",
+
+options:["Mantel","Kerak bumi","Teras luar","Teras dalam"],
+
+answer:"Kerak bumi"
 
 }
 
 ];
-
-let current=0;
-
-let score=0;
-
-function loadQuestion(){
-
-document.getElementById("result").innerHTML="";
-
-const q=quiz[current];
-
-document.getElementById("question").innerHTML=
-
-(current+1)+". "+q.q;
-
-let html="";
-
-q.a.forEach((ans,index)=>{
-
-html+=`
-
-<button onclick="checkAnswer(${index})">
-
-${ans}
-
-</button><br><br>
-
-`;
-
-});
-
-document.getElementById("answers").innerHTML=html;
-
-}
-
-function checkAnswer(choice){
-
-if(choice===quiz[current].c){
-
-score++;
-
-document.getElementById("result").innerHTML="✅ Betul!";
-
-}else{
-
-document.getElementById("result").innerHTML="❌ Salah";
-
-}
-
-}
-
-function nextQuestion(){
-
-current++;
-
-if(current>=quiz.length){
-
-document.getElementById("question").innerHTML=
-
-"🎉 Kuiz Tamat!";
-
-document.getElementById("answers").innerHTML=
-
-"Markah Amna: "+score+" / "+quiz.length;
-
-document.getElementById("result").innerHTML=
-
-"Hebat! Teruskan belajar 💜";
-
-return;
-
-}
-
-loadQuestion();
-
-}
-
-loadQuestion();
-
-</script>
-
-</body>
-
-</html>

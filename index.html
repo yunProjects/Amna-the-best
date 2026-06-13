@@ -32,45 +32,43 @@ max-width:700px;
 
 margin:auto;
 
-padding:25px;
+padding:20px;
 
-border-radius:25px;
+border-radius:20px;
 
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
+box-shadow:0 0 15px rgba(0,0,0,0.1);
 
 }
 
 h1{
 
-color:#8b5cf6;
+color:#8e44ad;
 
 }
 
 .quote{
 
-font-size:22px;
+font-size:18px;
 
 margin:20px 0;
 
-color:#444;
+color:#555;
 
 }
 
 button{
 
-background:#8b5cf6;
+background:#8e44ad;
 
 color:white;
 
 border:none;
 
-padding:15px 25px;
+padding:12px 20px;
 
-margin:10px;
+border-radius:10px;
 
-border-radius:15px;
-
-font-size:18px;
+font-size:16px;
 
 cursor:pointer;
 
@@ -78,39 +76,25 @@ cursor:pointer;
 
 button:hover{
 
-opacity:0.9;
+background:#6c3483;
 
 }
 
 #quiz{
 
-display:none;
-
 margin-top:20px;
+
+font-size:20px;
 
 }
 
-.option{
+.answer{
 
 display:block;
 
-width:90%;
-
-max-width:400px;
-
 margin:10px auto;
 
-}
-
-#result{
-
-font-size:22px;
-
-font-weight:bold;
-
-margin-top:20px;
-
-color:#8b5cf6;
+width:80%;
 
 }
 
@@ -124,53 +108,39 @@ color:#8b5cf6;
 
 <h1>🌸 Amna The Best 🌸</h1>
 
-<div class="quote" id="quote">
+<p class="quote">
 
-Amna, awak kuat, berani dan disayangi ramai orang.
+"Amna, jangan takut untuk gagal. Setiap usaha yang Amna buat hari ini akan menjadikan Amna lebih hebat esok."
 
-</div>
+</p>
 
-<button onclick="startQuiz()">💜 Mula Kuiz</button>
+<h2>📚 Kuiz Tingkatan 1</h2>
 
-<div id="quiz">
+<div id="quiz"></div>
 
-<h2 id="question"></h2>
-
-<div id="answers"></div>
-
-</div>
-
-<div id="result"></div>
+<button onclick="nextQuestion()">Soalan Seterusnya</button>
 
 </div>
 
 <script>
 
-const quotes = [
-
-"Amna, mama bangga dengan awak 💜",
-
-"Setiap hari adalah peluang baru untuk berjaya 🌸",
-
-"Awak lebih kuat daripada yang awak sangka ✨",
-
-"Jangan putus asa, Amna boleh buat 💪",
-
-"Kesilapan adalah sebahagian daripada pembelajaran 📚"
-
-];
-
-document.getElementById("quote").innerText =
-
-quotes[Math.floor(Math.random()*quotes.length)];
-
-const quiz = [
+const questions = [
 
 {
 
 q:"Apakah ibu negara Malaysia?",
 
-a:["Kuala Lumpur","Johor Bahru","Ipoh","Melaka"],
+a:["Johor Bahru","Kuala Lumpur","Ipoh","Kuching"],
+
+c:1
+
+},
+
+{
+
+q:"Berapakah hasil 15 × 4?",
+
+a:["60","50","45","55"],
 
 c:0
 
@@ -178,49 +148,9 @@ c:0
 
 {
 
-q:"7 × 8 = ?",
+q:"Planet yang paling hampir dengan Matahari ialah?",
 
-a:["54","56","58","64"],
-
-c:1
-
-},
-
-{
-
-q:"Planet yang kita diami ialah?",
-
-a:["Marikh","Bumi","Zuhrah","Musytari"],
-
-c:1
-
-},
-
-{
-
-q:"Kata nama khas ditulis dengan?",
-
-a:["Huruf besar","Huruf kecil","Nombor","Simbol"],
-
-c:0
-
-},
-
-{
-
-q:"15 + 20 = ?",
-
-a:["30","35","40","45"],
-
-c:1
-
-},
-
-{
-
-q:"Air membeku pada suhu?",
-
-a:["10°C","5°C","0°C","100°C"],
+a:["Bumi","Marikh","Utarid","Musytari"],
 
 c:2
 
@@ -228,17 +158,57 @@ c:2
 
 {
 
-q:"Sinonim perkataan cantik?",
+q:"Apakah bahasa kebangsaan Malaysia?",
 
-a:["Indah","Marah","Laju","Panas"],
+a:["Inggeris","Mandarin","Tamil","Bahasa Melayu"],
 
-c:0
+c:3
 
 },
 
 {
 
-q:"100 ÷ 4 = ?",
+q:"Siapakah Bapa Kemerdekaan Malaysia?",
+
+a:["Tun Razak","Tunku Abdul Rahman","Tun Hussein Onn","Tun Mahathir"],
+
+c:1
+
+},
+
+{
+
+q:"Apakah simbol kimia bagi air?",
+
+a:["CO2","H2O","O2","NaCl"],
+
+c:1
+
+},
+
+{
+
+q:"Berapa jumlah sudut segitiga?",
+
+a:["90°","180°","270°","360°"],
+
+c:1
+
+},
+
+{
+
+q:"Negeri terbesar di Malaysia ialah?",
+
+a:["Johor","Sabah","Sarawak","Pahang"],
+
+c:2
+
+},
+
+{
+
+q:"Apakah hasil 100 ÷ 4?",
 
 a:["20","25","30","40"],
 
@@ -248,19 +218,9 @@ c:1
 
 {
 
-q:"Haiwan yang bernafas menggunakan insang?",
+q:"Haiwan yang dikenali sebagai Raja Rimba ialah?",
 
-a:["Kucing","Ikan","Ayam","Arnab"],
-
-c:1
-
-},
-
-{
-
-q:"Peribahasa 'bagai aur dengan tebing' bermaksud?",
-
-a:["Bergaduh","Tolong-menolong","Malas","Takut"],
+a:["Harimau","Singa","Gajah","Beruang"],
 
 c:1
 
@@ -270,76 +230,56 @@ c:1
 
 let current = 0;
 
-let score = 0;
+function loadQuestion(){
 
-function startQuiz(){
+let q = questions[current];
 
-document.getElementById("quiz").style.display="block";
+let html = "<h3>"+q.q+"</h3>";
 
-showQuestion();
+for(let i=0;i<q.a.length;i++){
 
-}
-
-function showQuestion(){
-
-if(current >= quiz.length){
-
-document.getElementById("quiz").innerHTML="";
-
-document.getElementById("result").innerHTML=
-
-"🎉 Tahniah Amna!<br><br>Markah: "
-
-+ score + " / " + quiz.length +
-
-"<br><br>🌸 Mama sayang Amna 🌸";
-
-return;
+html += `<button class="answer" onclick="checkAnswer(${i})">${q.a[i]}</button>`;
 
 }
 
-document.getElementById("question").innerText=
-
-(current+1)+". "+quiz[current].q;
-
-let html="";
-
-quiz[current].a.forEach((ans,index)=>{
-
-html += `
-
-<button class="option"
-
-onclick="checkAnswer(${index})">
-
-${ans}
-
-</button>`;
-
-});
-
-document.getElementById("answers").innerHTML=html;
+document.getElementById("quiz").innerHTML = html;
 
 }
 
-function checkAnswer(choice){
+function checkAnswer(i){
 
-if(choice===quiz[current].c){
+if(i===questions[current].c){
 
-score++;
+alert("✅ Betul! Hebat Amna!");
+
+}else{
+
+alert("❌ Belum tepat. Cuba lagi!");
 
 }
+
+}
+
+function nextQuestion(){
 
 current++;
 
-showQuestion();
+if(current>=questions.length){
+
+current=0;
+
+alert("🎉 Tahniah Amna! Semua soalan selesai. Pusingan baru bermula.");
 
 }
+
+loadQuestion();
+
+}
+
+loadQuestion();
 
 </script>
 
 </body>
 
 </html>
-
-<!-- test -->

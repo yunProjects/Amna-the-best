@@ -1,3 +1,147 @@
+<!DOCTYPE html>
+
+<html lang="ms">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Amna Study Hub</title>
+
+<style>
+
+body{
+
+font-family:Arial,sans-serif;
+
+background:#e9ddf5;
+
+margin:0;
+
+padding:20px;
+
+text-align:center;
+
+}
+
+.card{
+
+background:white;
+
+max-width:700px;
+
+margin:auto;
+
+padding:20px;
+
+border-radius:20px;
+
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+
+}
+
+h1{
+
+color:#7b2cbf;
+
+}
+
+.quote{
+
+font-style:italic;
+
+color:#555;
+
+margin-bottom:20px;
+
+}
+
+button{
+
+background:#7b2cbf;
+
+color:white;
+
+border:none;
+
+padding:12px 20px;
+
+margin:8px;
+
+border-radius:10px;
+
+font-size:16px;
+
+cursor:pointer;
+
+}
+
+button:hover{
+
+opacity:0.9;
+
+}
+
+.answer-btn{
+
+display:block;
+
+width:100%;
+
+margin:10px 0;
+
+}
+
+#result{
+
+font-size:22px;
+
+font-weight:bold;
+
+margin-top:20px;
+
+}
+
+.footer{
+
+margin-top:25px;
+
+font-size:12px;
+
+color:#777;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>🌸 Amna Study Hub 🌸</h1>
+
+<p class="quote">
+
+"Amna, setiap hari belajar sedikit pun tetap satu kejayaan. Jangan putus asa!"
+
+</p>
+
+<h2 id="question">Loading...</h2>
+
+<div id="answers"></div>
+
+<p id="score">Markah: 0</p>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
 const questions = [
 
 {
@@ -32,29 +176,9 @@ correct:1
 
 {
 
-question:"Air membeku pada suhu berapa?",
+question:"Apakah simbol kimia bagi air?",
 
-answers:["0°C","50°C","100°C","10°C"],
-
-correct:0
-
-},
-
-{
-
-question:"Apakah ibu negara Malaysia?",
-
-answers:["Johor Bahru","Kuching","Kuala Lumpur","Ipoh"],
-
-correct:2
-
-},
-
-{
-
-question:"9 × 9 = ?",
-
-answers:["72","81","99","90"],
+answers:["CO2","H2O","O2","NaCl"],
 
 correct:1
 
@@ -62,11 +186,41 @@ correct:1
 
 {
 
-question:"Haiwan manakah mamalia?",
+question:"Ibu negara Malaysia ialah?",
 
-answers:["Ikan","Katak","Kucing","Ayam"],
+answers:["Johor Bahru","Putrajaya","Kuala Lumpur","Ipoh"],
 
 correct:2
+
+},
+
+{
+
+question:"5 + 9 = ?",
+
+answers:["12","13","14","15"],
+
+correct:2
+
+},
+
+{
+
+question:"Haiwan yang dikenali sebagai Raja Rimba ialah?",
+
+answers:["Harimau","Gajah","Singa","Kuda"],
+
+correct:2
+
+},
+
+{
+
+question:"Apakah bahasa kebangsaan Malaysia?",
+
+answers:["Inggeris","Tamil","Cina","Bahasa Melayu"],
+
+correct:3
 
 },
 
@@ -74,7 +228,7 @@ correct:2
 
 question:"Apakah warna yang terhasil daripada merah + kuning?",
 
-answers:["Hijau","Jingga","Ungu","Biru"],
+answers:["Hijau","Jingga","Biru","Ungu"],
 
 correct:1
 
@@ -82,78 +236,90 @@ correct:1
 
 {
 
-question:"Berapa bilangan benua di dunia?",
+question:"Negeri manakah terkenal dengan nasi dagang?",
 
-answers:["5","6","7","8"],
+answers:["Perlis","Terengganu","Melaka","Johor"],
 
-correct:2
-
-},
-
-{
-
-question:"Bahasa kebangsaan Malaysia ialah?",
-
-answers:["Inggeris","Tamil","Melayu","Mandarin"],
-
-correct:2
+correct:1
 
 }
 
 ];
 
-let currentQuestion = 0;
+let currentQuestion=0;
 
-let score = 0;
+let score=0;
 
 function showQuestion(){
 
-const q = questions[currentQuestion];
+if(currentQuestion>=questions.length){
 
-document.getElementById("question").innerHTML =
+document.getElementById("question").innerHTML="🎉 Tahniah Amna!";
 
-`<h2>${q.question}</h2>`;
+document.getElementById("answers").innerHTML="";
 
-document.getElementById("answers").innerHTML =
+document.getElementById("result").innerHTML=
 
-q.answers.map((answer,index)=>
+"Markah Akhir: "+score+" / "+questions.length;
 
-`<button onclick="checkAnswer(${index})">${answer}</button>`
-
-).join("");
+return;
 
 }
 
-function checkAnswer(index){
+let q=questions[currentQuestion];
 
-if(index===questions[currentQuestion].correct){
+document.getElementById("question").innerHTML=q.question;
+
+let answersHTML="";
+
+q.answers.forEach((answer,index)=>{
+
+answersHTML+=`
+
+<button class="answer-btn"
+
+onclick="checkAnswer(${index})">
+
+${answer}
+
+</button>
+
+`;
+
+});
+
+document.getElementById("answers").innerHTML=answersHTML;
+
+}
+
+function checkAnswer(selected){
+
+if(selected===questions[currentQuestion].correct){
 
 score++;
 
 }
 
+document.getElementById("score").innerHTML=
+
+"Markah: "+score;
+
 currentQuestion++;
 
-if(currentQuestion<questions.length){
-
 showQuestion();
-
-}else{
-
-document.getElementById("quiz").innerHTML=
-
-`
-
-<h1>Tahniah Amna 🎉</h1>
-
-<h2>Skor: ${score}/${questions.length}</h2>
-
-<button onclick="location.reload()">Main Lagi</button>
-
-`;
-
-}
 
 }
 
 showQuestion();
+
+</script>
+
+<div class="footer">
+
+Dibina khas untuk Amna ❤️ | Yun
+
+</div>
+
+</body>
+
+</html>

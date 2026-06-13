@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 
-<html lang="ms">
+<html>
 
 <head>
 
-<meta charset="UTF-8">
+<title>Amna The Best</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Amna The Best Quiz</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
 
@@ -16,39 +14,45 @@ body{
 
 font-family:Arial,sans-serif;
 
-background:linear-gradient(135deg,#d9b3ff,#f4e6ff);
-
-text-align:center;
+background:#f3e8ff;
 
 padding:20px;
 
+text-align:center;
+
 }
 
-.container{
+.card{
 
 background:white;
-
-max-width:500px;
-
-margin:auto;
 
 padding:20px;
 
 border-radius:20px;
 
+max-width:500px;
+
+margin:auto;
+
 box-shadow:0 0 15px rgba(0,0,0,0.1);
 
 }
 
-h1{
+h1{color:#8b5cf6;}
 
-color:#8a2be2;
+.quote{
+
+font-size:20px;
+
+margin:20px 0;
+
+color:#444;
 
 }
 
 button{
 
-background:#8a2be2;
+background:#8b5cf6;
 
 color:white;
 
@@ -58,37 +62,7 @@ padding:12px 20px;
 
 border-radius:10px;
 
-margin-top:10px;
-
-cursor:pointer;
-
 font-size:16px;
-
-}
-
-button:hover{
-
-opacity:0.9;
-
-}
-
-.answer{
-
-display:block;
-
-width:100%;
-
-margin:8px 0;
-
-}
-
-#score{
-
-font-size:22px;
-
-font-weight:bold;
-
-color:green;
 
 }
 
@@ -98,139 +72,35 @@ color:green;
 
 <body>
 
-<div class="container">
+<div class="card">
 
-<h1>🌟 AMNA THE BEST 🌟</h1>
+<h1>🌸 Amna The Best 🌸</h1>
 
-<p id="question">Tekan Mula</p>
+<p class="quote">
 
-<div id="answers"></div>
+"Amna, awak kuat, berani dan disayangi ramai orang.
 
-<button onclick="startQuiz()">Mula Kuiz</button>
+Setiap hari adalah peluang baru untuk jadi lebih hebat."
 
-<p id="score"></p>
+</p>
+
+<h2>💜 Kuiz Ringkas</h2>
+
+<p>Siapa anak yang paling hebat?</p>
+
+<button onclick="jawab()">AMNA</button>
+
+<p id="result"></p>
 
 </div>
 
 <script>
 
-const quiz = [
+function jawab(){
 
-{
+document.getElementById("result").innerHTML =
 
-q:"Apakah ibu negara Malaysia?",
-
-a:["Johor Bahru","Kuala Lumpur","Ipoh","Melaka"],
-
-c:1
-
-},
-
-{
-
-q:"Gunung tertinggi di Malaysia ialah?",
-
-a:["Gunung Ledang","Gunung Tahan","Gunung Kinabalu","Gunung Jerai"],
-
-c:2
-
-},
-
-{
-
-q:"5 × 8 = ?",
-
-a:["35","40","45","50"],
-
-c:1
-
-},
-
-{
-
-q:"Planet yang kita duduki ialah?",
-
-a:["Marikh","Bumi","Musytari","Zuhrah"],
-
-c:1
-
-},
-
-{
-
-q:"Siapakah Perdana Menteri pertama Malaysia?",
-
-a:["Tun Razak","Tunku Abdul Rahman","Tun Hussein Onn","Mahathir"],
-
-c:1
-
-},
-
-{
-
-q:"12 + 18 = ?",
-
-a:["28","29","30","31"],
-
-c:2
-
-}
-
-];
-
-let current=0;
-
-let score=0;
-
-function startQuiz(){
-
-current=0;
-
-score=0;
-
-showQuestion();
-
-}
-
-function showQuestion(){
-
-if(current>=quiz.length){
-
-document.getElementById("question").innerHTML="🎉 Tahniah Amna!";
-
-document.getElementById("answers").innerHTML="";
-
-document.getElementById("score").innerHTML="Markah: "+score+" / "+quiz.length;
-
-return;
-
-}
-
-document.getElementById("question").innerHTML=quiz[current].q;
-
-let html="";
-
-quiz[current].a.forEach((ans,index)=>{
-
-html+=`<button class="answer" onclick="checkAnswer(${index})">${ans}</button>`;
-
-});
-
-document.getElementById("answers").innerHTML=html;
-
-}
-
-function checkAnswer(index){
-
-if(index===quiz[current].c){
-
-score++;
-
-}
-
-current++;
-
-showQuestion();
+"🎉 Betul! Amna memang hebat dan istimewa!";
 
 }
 

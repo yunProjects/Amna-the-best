@@ -1,42 +1,22 @@
-const quizData = [
+const questions = [
 
 {
 
-question:"Apakah ibu negara Malaysia?",
+question:"Apakah hasil 7 × 8 ?",
 
-options:["Johor Bahru","Kuala Lumpur","Ipoh","Kuching"],
+answers:["54","56","64","48"],
 
-answer:"Kuala Lumpur"
+correct:1
 
 },
 
 {
 
-question:"Berapakah 7 + 8?",
+question:"Planet yang kita duduki ialah?",
 
-options:["14","15","16","17"],
+answers:["Marikh","Bumi","Musytari","Zuhrah"],
 
-answer:"15"
-
-},
-
-{
-
-question:"Planet yang kita diami ialah?",
-
-options:["Marikh","Bumi","Zuhrah","Musytari"],
-
-answer:"Bumi"
-
-},
-
-{
-
-question:"Apakah simbol air?",
-
-options:["CO2","O2","H2O","NaCl"],
-
-answer:"H2O"
+correct:1
 
 },
 
@@ -44,39 +24,169 @@ answer:"H2O"
 
 question:"Siapakah Perdana Menteri pertama Malaysia?",
 
-options:["Tunku Abdul Rahman","Tun Razak","Tun Hussein Onn","Tun Mahathir"],
+answers:["Tun Mahathir","Tunku Abdul Rahman","Tun Razak","Tun Hussein Onn"],
 
-answer:"Tunku Abdul Rahman"
-
-},
-
-{
-
-question:"Berapakah 12 × 4?",
-
-options:["36","48","52","56"],
-
-answer:"48"
+correct:1
 
 },
 
 {
 
-question:"Negeri Jelapang Padi Malaysia ialah?",
+question:"Kata nama khas mesti bermula dengan?",
 
-options:["Johor","Perlis","Kedah","Sabah"],
+answers:["Huruf kecil","Huruf besar","Nombor","Simbol"],
 
-answer:"Kedah"
+correct:1
 
 },
 
 {
 
-question:"Haiwan yang boleh hidup di darat dan air?",
+question:"What is the opposite of 'hot'?",
 
-options:["Ayam","Katak","Kucing","Arnab"],
+answers:["Warm","Cold","Big","Fast"],
 
-answer:"Katak"
+correct:1
+
+},
+
+{
+
+question:"12 + 18 = ?",
+
+answers:["20","25","30","35"],
+
+correct:2
+
+},
+
+{
+
+question:"Apakah gas yang diperlukan manusia untuk bernafas?",
+
+answers:["Nitrogen","Oksigen","Karbon Dioksida","Helium"],
+
+correct:1
+
+},
+
+{
+
+question:"Negeri Terengganu terletak di pantai?",
+
+answers:["Barat","Timur","Utara","Selatan"],
+
+correct:1
+
+},
+
+{
+
+question:"15 × 6 = ?",
+
+answers:["80","90","75","95"],
+
+correct:1
+
+},
+
+{
+
+question:"Apakah ibu negara Malaysia?",
+
+answers:["Johor Bahru","Kuala Lumpur","Putrajaya","Ipoh"],
+
+correct:1
+
+},
+
+{
+
+question:"Water bermaksud?",
+
+answers:["Api","Udara","Air","Tanah"],
+
+correct:2
+
+},
+
+{
+
+question:"100 ÷ 4 = ?",
+
+answers:["20","25","30","40"],
+
+correct:1
+
+},
+
+{
+
+question:"Haiwan yang bertelur ialah?",
+
+answers:["Kucing","Ayam","Lembu","Kambing"],
+
+correct:1
+
+},
+
+{
+
+question:"Apakah warna bendera Malaysia yang paling banyak jalur?",
+
+answers:["Merah dan putih","Hijau","Hitam","Ungu"],
+
+correct:0
+
+},
+
+{
+
+question:"9² = ?",
+
+answers:["18","72","81","99"],
+
+correct:2
+
+},
+
+{
+
+question:"Synonym bagi 'happy' ialah?",
+
+answers:["Sad","Joyful","Angry","Tired"],
+
+correct:1
+
+},
+
+{
+
+question:"Apakah organ yang mengepam darah?",
+
+answers:["Paru-paru","Jantung","Hati","Buah pinggang"],
+
+correct:1
+
+},
+
+{
+
+question:"50 + 75 = ?",
+
+answers:["100","115","125","135"],
+
+correct:2
+
+},
+
+{
+
+question:"Siapakah Yang di-Pertuan Agong sekarang?",
+
+answers:["Raja Perlis","Sultan Johor","Sultan Ibrahim","Sultan Selangor"],
+
+correct:2
 
 },
 
@@ -84,119 +194,9 @@ answer:"Katak"
 
 question:"Apakah bahasa kebangsaan Malaysia?",
 
-options:["Bahasa Inggeris","Bahasa Melayu","Bahasa Arab","Bahasa Tamil"],
+answers:["Inggeris","Tamil","Cina","Bahasa Melayu"],
 
-answer:"Bahasa Melayu"
-
-},
-
-{
-
-question:"Gunung tertinggi di Malaysia?",
-
-options:["Gunung Tahan","Gunung Kinabalu","Gunung Jerai","Gunung Ledang"],
-
-answer:"Gunung Kinabalu"
-
-},
-
-{
-
-question:"Berapakah 100 ÷ 4?",
-
-options:["20","25","30","40"],
-
-answer:"25"
-
-},
-
-{
-
-question:"Apakah benua terbesar di dunia?",
-
-options:["Afrika","Asia","Eropah","Australia"],
-
-answer:"Asia"
-
-},
-
-{
-
-question:"Apakah proses tumbuhan membuat makanan?",
-
-options:["Respirasi","Fotosintesis","Penyejatan","Pembakaran"],
-
-answer:"Fotosintesis"
-
-},
-
-{
-
-question:"Negara jiran Malaysia di selatan?",
-
-options:["Thailand","Indonesia","Singapura","Vietnam"],
-
-answer:"Singapura"
-
-},
-
-{
-
-question:"Berapakah hasil 15 + 25?",
-
-options:["30","35","40","45"],
-
-answer:"40"
-
-},
-
-{
-
-question:"Apakah warna yang terhasil daripada campuran merah dan kuning?",
-
-options:["Hijau","Ungu","Oren","Biru"],
-
-answer:"Oren"
-
-},
-
-{
-
-question:"Apakah sungai terpanjang di Malaysia?",
-
-options:["Sungai Rajang","Sungai Pahang","Sungai Perak","Sungai Kinabatangan"],
-
-answer:"Sungai Rajang"
-
-},
-
-{
-
-question:"Siapakah pencipta mentol lampu?",
-
-options:["Newton","Einstein","Thomas Edison","Galileo"],
-
-answer:"Thomas Edison"
-
-},
-
-{
-
-question:"Berapakah 9 × 9?",
-
-options:["72","81","90","99"],
-
-answer:"81"
-
-},
-
-{
-
-question:"Apakah lapisan paling luar bumi?",
-
-options:["Mantel","Kerak bumi","Teras luar","Teras dalam"],
-
-answer:"Kerak bumi"
+correct:3
 
 }
 

@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="ms">
 
 <head>
 
-<title>Amna The Best</title>
+<meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Amna The Best</title>
 
 <style>
 
@@ -14,11 +16,11 @@ body{
 
 font-family:Arial,sans-serif;
 
-background:#f3e8ff;
-
-padding:20px;
+background:#e9ddf5;
 
 text-align:center;
+
+padding:20px;
 
 }
 
@@ -26,23 +28,27 @@ text-align:center;
 
 background:white;
 
-padding:20px;
-
-border-radius:20px;
-
-max-width:500px;
+max-width:700px;
 
 margin:auto;
 
-box-shadow:0 0 15px rgba(0,0,0,0.1);
+padding:25px;
+
+border-radius:25px;
+
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
 
 }
 
-h1{color:#8b5cf6;}
+h1{
+
+color:#8b5cf6;
+
+}
 
 .quote{
 
-font-size:20px;
+font-size:22px;
 
 margin:20px 0;
 
@@ -58,11 +64,53 @@ color:white;
 
 border:none;
 
-padding:12px 20px;
+padding:15px 25px;
 
-border-radius:10px;
+margin:10px;
 
-font-size:16px;
+border-radius:15px;
+
+font-size:18px;
+
+cursor:pointer;
+
+}
+
+button:hover{
+
+opacity:0.9;
+
+}
+
+#quiz{
+
+display:none;
+
+margin-top:20px;
+
+}
+
+.option{
+
+display:block;
+
+width:90%;
+
+max-width:400px;
+
+margin:10px auto;
+
+}
+
+#result{
+
+font-size:22px;
+
+font-weight:bold;
+
+margin-top:20px;
+
+color:#8b5cf6;
 
 }
 
@@ -76,31 +124,215 @@ font-size:16px;
 
 <h1>🌸 Amna The Best 🌸</h1>
 
-<p class="quote">
+<div class="quote" id="quote">
 
-"Amna, awak kuat, berani dan disayangi ramai orang.
+Amna, awak kuat, berani dan disayangi ramai orang.
 
-Setiap hari adalah peluang baru untuk jadi lebih hebat."
+</div>
 
-</p>
+<button onclick="startQuiz()">💜 Mula Kuiz</button>
 
-<h2>💜 Kuiz Ringkas</h2>
+<div id="quiz">
 
-<p>Siapa anak yang paling hebat?</p>
+<h2 id="question"></h2>
 
-<button onclick="jawab()">AMNA</button>
+<div id="answers"></div>
 
-<p id="result"></p>
+</div>
+
+<div id="result"></div>
 
 </div>
 
 <script>
 
-function jawab(){
+const quotes = [
 
-document.getElementById("result").innerHTML =
+"Amna, mama bangga dengan awak 💜",
 
-"🎉 Betul! Amna memang hebat dan istimewa!";
+"Setiap hari adalah peluang baru untuk berjaya 🌸",
+
+"Awak lebih kuat daripada yang awak sangka ✨",
+
+"Jangan putus asa, Amna boleh buat 💪",
+
+"Kesilapan adalah sebahagian daripada pembelajaran 📚"
+
+];
+
+document.getElementById("quote").innerText =
+
+quotes[Math.floor(Math.random()*quotes.length)];
+
+const quiz = [
+
+{
+
+q:"Apakah ibu negara Malaysia?",
+
+a:["Kuala Lumpur","Johor Bahru","Ipoh","Melaka"],
+
+c:0
+
+},
+
+{
+
+q:"7 × 8 = ?",
+
+a:["54","56","58","64"],
+
+c:1
+
+},
+
+{
+
+q:"Planet yang kita diami ialah?",
+
+a:["Marikh","Bumi","Zuhrah","Musytari"],
+
+c:1
+
+},
+
+{
+
+q:"Kata nama khas ditulis dengan?",
+
+a:["Huruf besar","Huruf kecil","Nombor","Simbol"],
+
+c:0
+
+},
+
+{
+
+q:"15 + 20 = ?",
+
+a:["30","35","40","45"],
+
+c:1
+
+},
+
+{
+
+q:"Air membeku pada suhu?",
+
+a:["10°C","5°C","0°C","100°C"],
+
+c:2
+
+},
+
+{
+
+q:"Sinonim perkataan cantik?",
+
+a:["Indah","Marah","Laju","Panas"],
+
+c:0
+
+},
+
+{
+
+q:"100 ÷ 4 = ?",
+
+a:["20","25","30","40"],
+
+c:1
+
+},
+
+{
+
+q:"Haiwan yang bernafas menggunakan insang?",
+
+a:["Kucing","Ikan","Ayam","Arnab"],
+
+c:1
+
+},
+
+{
+
+q:"Peribahasa 'bagai aur dengan tebing' bermaksud?",
+
+a:["Bergaduh","Tolong-menolong","Malas","Takut"],
+
+c:1
+
+}
+
+];
+
+let current = 0;
+
+let score = 0;
+
+function startQuiz(){
+
+document.getElementById("quiz").style.display="block";
+
+showQuestion();
+
+}
+
+function showQuestion(){
+
+if(current >= quiz.length){
+
+document.getElementById("quiz").innerHTML="";
+
+document.getElementById("result").innerHTML=
+
+"🎉 Tahniah Amna!<br><br>Markah: "
+
++ score + " / " + quiz.length +
+
+"<br><br>🌸 Mama sayang Amna 🌸";
+
+return;
+
+}
+
+document.getElementById("question").innerText=
+
+(current+1)+". "+quiz[current].q;
+
+let html="";
+
+quiz[current].a.forEach((ans,index)=>{
+
+html += `
+
+<button class="option"
+
+onclick="checkAnswer(${index})">
+
+${ans}
+
+</button>`;
+
+});
+
+document.getElementById("answers").innerHTML=html;
+
+}
+
+function checkAnswer(choice){
+
+if(choice===quiz[current].c){
+
+score++;
+
+}
+
+current++;
+
+showQuestion();
 
 }
 

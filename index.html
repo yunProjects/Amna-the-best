@@ -8,93 +8,75 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Amna The Best</title>
+<title>Amna Study Hub</title>
 
 <style>
 
 body{
 
-font-family:Arial,sans-serif;
+    font-family:Arial,sans-serif;
 
-background:#e9ddf5;
+    background:#e9ddf5;
 
-text-align:center;
+    text-align:center;
 
-padding:20px;
+    padding:20px;
 
 }
 
 .card{
 
-background:white;
+    background:white;
 
-max-width:700px;
+    max-width:700px;
 
-margin:auto;
+    margin:auto;
 
-padding:20px;
+    padding:20px;
 
-border-radius:20px;
+    border-radius:20px;
 
-box-shadow:0 0 15px rgba(0,0,0,0.1);
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
 
 }
 
 h1{
 
-color:#8e44ad;
-
-}
-
-.quote{
-
-font-size:18px;
-
-margin:20px 0;
-
-color:#555;
+    color:#7b3fc5;
 
 }
 
 button{
 
-background:#8e44ad;
+    background:#7b3fc5;
 
-color:white;
+    color:white;
 
-border:none;
+    border:none;
 
-padding:12px 20px;
+    padding:10px 20px;
 
-border-radius:10px;
+    margin:5px;
 
-font-size:16px;
+    border-radius:10px;
 
-cursor:pointer;
+    cursor:pointer;
 
 }
 
 button:hover{
 
-background:#6c3483;
+    opacity:0.9;
 
 }
 
-#quiz{
+#result{
 
-margin-top:20px;
+    font-size:20px;
 
-font-size:20px;
+    font-weight:bold;
 
-}
-
-.answer{
-
-display:block;
-
-margin:10px auto;
-
-width:80%;
+    margin-top:15px;
 
 }
 
@@ -106,17 +88,27 @@ width:80%;
 
 <div class="card">
 
-<h1>🌸 Amna The Best 🌸</h1>
+<h1>🌸 Amna Study Hub 🌸</h1>
 
-<p class="quote">
+<p><b>Kata-kata Semangat:</b></p>
 
-"Amna, jangan takut untuk gagal. Setiap usaha yang Amna buat hari ini akan menjadikan Amna lebih hebat esok."
+<p>
+
+"Amna, setiap hari adalah peluang baru untuk menjadi lebih hebat.
+
+Jangan takut membuat kesilapan kerana itulah cara kita belajar."
 
 </p>
 
-<h2>📚 Kuiz Tingkatan 1</h2>
+<hr>
 
-<div id="quiz"></div>
+<h2>Kuiz Tingkatan 1</h2>
+
+<p id="question"></p>
+
+<div id="answers"></div>
+
+<p id="result"></p>
 
 <button onclick="nextQuestion()">Soalan Seterusnya</button>
 
@@ -124,7 +116,7 @@ width:80%;
 
 <script>
 
-const questions = [
+const quiz = [
 
 {
 
@@ -138,11 +130,11 @@ c:1
 
 {
 
-q:"Berapakah hasil 15 × 4?",
+q:"Berapakah 7 × 8?",
 
-a:["60","50","45","55"],
+a:["54","56","64","72"],
 
-c:0
+c:1
 
 },
 
@@ -158,11 +150,11 @@ c:2
 
 {
 
-q:"Apakah bahasa kebangsaan Malaysia?",
+q:"Apakah simbol kimia bagi air?",
 
-a:["Inggeris","Mandarin","Tamil","Bahasa Melayu"],
+a:["CO2","H2O","NaCl","O2"],
 
-c:3
+c:1
 
 },
 
@@ -170,27 +162,17 @@ c:3
 
 q:"Siapakah Bapa Kemerdekaan Malaysia?",
 
-a:["Tun Razak","Tunku Abdul Rahman","Tun Hussein Onn","Tun Mahathir"],
+a:["Tun Razak","Tun Hussein Onn","Tunku Abdul Rahman","Tun Mahathir"],
 
-c:1
-
-},
-
-{
-
-q:"Apakah simbol kimia bagi air?",
-
-a:["CO2","H2O","O2","NaCl"],
-
-c:1
+c:2
 
 },
 
 {
 
-q:"Berapa jumlah sudut segitiga?",
+q:"Kata nama khas mesti ditulis dengan?",
 
-a:["90°","180°","270°","360°"],
+a:["Huruf kecil","Huruf besar","Warna merah","Italic"],
 
 c:1
 
@@ -200,7 +182,17 @@ c:1
 
 q:"Negeri terbesar di Malaysia ialah?",
 
-a:["Johor","Sabah","Sarawak","Pahang"],
+a:["Sabah","Sarawak","Johor","Pahang"],
+
+c:1
+
+},
+
+{
+
+q:"Berapakah hasil 100 ÷ 4?",
+
+a:["20","24","25","30"],
 
 c:2
 
@@ -208,19 +200,19 @@ c:2
 
 {
 
-q:"Apakah hasil 100 ÷ 4?",
+q:"Apakah bahasa rasmi Malaysia?",
 
-a:["20","25","30","40"],
+a:["Inggeris","Mandarin","Bahasa Melayu","Tamil"],
 
-c:1
+c:2
 
 },
 
 {
 
-q:"Haiwan yang dikenali sebagai Raja Rimba ialah?",
+q:"Gunung tertinggi di Malaysia ialah?",
 
-a:["Harimau","Singa","Gajah","Beruang"],
+a:["Gunung Tahan","Gunung Kinabalu","Gunung Ledang","Gunung Jerai"],
 
 c:1
 
@@ -228,33 +220,51 @@ c:1
 
 ];
 
-let current = 0;
+let current=0;
+
+let score=0;
 
 function loadQuestion(){
 
-let q = questions[current];
+document.getElementById("result").innerHTML="";
 
-let html = "<h3>"+q.q+"</h3>";
+const q=quiz[current];
 
-for(let i=0;i<q.a.length;i++){
+document.getElementById("question").innerHTML=
 
-html += `<button class="answer" onclick="checkAnswer(${i})">${q.a[i]}</button>`;
+(current+1)+". "+q.q;
+
+let html="";
+
+q.a.forEach((ans,index)=>{
+
+html+=`
+
+<button onclick="checkAnswer(${index})">
+
+${ans}
+
+</button><br><br>
+
+`;
+
+});
+
+document.getElementById("answers").innerHTML=html;
 
 }
 
-document.getElementById("quiz").innerHTML = html;
+function checkAnswer(choice){
 
-}
+if(choice===quiz[current].c){
 
-function checkAnswer(i){
+score++;
 
-if(i===questions[current].c){
-
-alert("✅ Betul! Hebat Amna!");
+document.getElementById("result").innerHTML="✅ Betul!";
 
 }else{
 
-alert("❌ Belum tepat. Cuba lagi!");
+document.getElementById("result").innerHTML="❌ Salah";
 
 }
 
@@ -264,11 +274,21 @@ function nextQuestion(){
 
 current++;
 
-if(current>=questions.length){
+if(current>=quiz.length){
 
-current=0;
+document.getElementById("question").innerHTML=
 
-alert("🎉 Tahniah Amna! Semua soalan selesai. Pusingan baru bermula.");
+"🎉 Kuiz Tamat!";
+
+document.getElementById("answers").innerHTML=
+
+"Markah Amna: "+score+" / "+quiz.length;
+
+document.getElementById("result").innerHTML=
+
+"Hebat! Teruskan belajar 💜";
+
+return;
 
 }
 
